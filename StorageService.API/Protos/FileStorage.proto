@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option csharp_namespace = "StorageService.Protos";
+
+service StorageService {
+    rpc AddFile (AddFileRequest) returns (AddFileResponse);
+    rpc RetrieveFile (RetrieveFileRequest) returns (RetrieveFileResponse);
+    rpc DeleteFile (DeleteFileRequest) returns (DeleteFileResponse);
+}
+
+message AddFileRequest {
+    bytes content = 1;
+    string fileName = 2;
+    string contentType = 3;
+    string uploadedBy = 4;
+}
+
+message AddFileResponse {
+    string fileId = 1;
+}
+
+message RetrieveFileRequest {
+    string fileId = 1;
+}
+
+message RetrieveFileResponse {
+    bytes content = 1;
+    string fileName = 2;
+    string contentType = 3;
+}
+
+message DeleteFileRequest {
+    string fileId = 1;
+}
+
+message DeleteFileResponse {
+    bool success = 1;
+}
